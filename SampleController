@@ -1,0 +1,105 @@
+package application;
+
+
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.input.KeyEvent;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
+
+
+
+public class SampleController implements Initializable {
+	@FXML
+	private MenuItem smallMenuItem;
+
+    @FXML
+    private MenuItem closeMenuItem;
+
+    @FXML
+    private MenuItem bigMenuItem;
+
+    @FXML
+    private TextArea mainTextArea;
+
+    @FXML
+    private Label wordsCountLabel;
+
+    @FXML
+    private Label lettersCountLabel;
+
+    @FXML
+    private Button clearButton;
+	
+    @Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		
+    	final String lettersCount = "Ilość znaków: ";
+    	final String wordsCount = "Ilość słów: ";
+    	
+    	lettersCountLabel.setText(lettersCount + 0);
+    	wordsCountLabel.setText(wordsCount + 0);
+    	
+       
+        clearButton.setOnAction(new EventHandler<ActionEvent>(){
+        	 @Override
+             public void handle(ActionEvent arg0) {
+        		 mainTextArea.setText("");
+        		 
+        		lettersCountLabel.setText(lettersCount + 0);
+        	    wordsCountLabel.setText(wordsCount + 0);
+        	    	
+        		 }
+        });
+        mainTextArea.addEventFilter(KeyEvent.KEY_TYPED, new EventHandler<KeyEvent>(){
+        	
+        	public void handle(KeyEvent event){
+        		int letters = mainTextArea.getText().trim().length();
+        		lettersCountLabel.setText(lettersCount + letters);
+        		
+        		int words = mainTextArea.getText().split(" ").length;
+        		wordsCountLabel.setText(wordsCount + words);
+        	}
+    });
+
+        closeMenuItem.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                //zamknięcie aplikacji
+                Platform.exit();
+            }
+        });
+
+        bigMenuItem.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                String text = mainTextArea.getText();
+                text = text.toUpperCase();
+                mainTextArea.setText(text);
+            }
+        });
+
+        smallMenuItem.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                String text = mainTextArea.getText();
+                text = text.toLowerCase();
+                mainTextArea.setText(text);
+            }
+        });
+    
+    
+    }
+    
+}
+
+
