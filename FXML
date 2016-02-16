@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SampleController">
+   <top>
+      <MenuBar fx:id="menuBar" BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem fx:id="closeMenuItem" mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem fx:id="bigMenuItem" mnemonicParsing="false" text="change to big letters" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem fx:id="smallMenuItem" mnemonicParsing="false" text="change to small letters" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <center>
+      <TextArea fx:id="mainTextArea" prefHeight="400.0" prefWidth="500.0" BorderPane.alignment="CENTER" />
+   </center>
+   <bottom>
+      <HBox prefHeight="28.0" prefWidth="500.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="lettersCountLabel" text="Label">
+               <graphic>
+                  <Separator orientation="VERTICAL" />
+               </graphic>
+            </Label>
+            <Label fx:id="wordsCountLabel" layoutX="10.0" layoutY="10.0" text="Label">
+               <graphic>
+                  <Separator orientation="VERTICAL" />
+               </graphic>
+            </Label>
+            <Button fx:id="clearButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="57.0" text="clear">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin></Button>
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>
